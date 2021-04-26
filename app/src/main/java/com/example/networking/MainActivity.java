@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
@@ -36,12 +42,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        Button finalButton = findViewById(R.id.button1); //laggt in knappen i java filen.
+        finalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
+            }
+        });
         mountainArrayList.add(new Mountain("Matterhorn","Alps",4478));
         mountainArrayList.add(new Mountain("Mont Blanc","Alps",4808));
         mountainArrayList.add(new Mountain("Denali","Alaska",6190));
 
     }
+
     @SuppressLint("StaticFieldLeak")
     private class JsonTask extends AsyncTask<String, String, String> {
 
