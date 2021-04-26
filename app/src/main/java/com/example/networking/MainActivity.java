@@ -3,8 +3,11 @@ package com.example.networking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,7 +20,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ArrayAdapter<Mountain> adapter=new ArrayAdapter<Mountain>(this, R.layout.list_item_textview,R.id.text_T,mountainArrayList); //Adapter pekar på layouten och sedan på id:et och tar in värdet av mountainArrayList. Adapter kopplar samman alla.
-        ListView my_listview=(ListView) findViewById(R.id.list_V);
+        ListView my_listview=(ListView) findViewById(R.id.list_V);  //Hämtar list view
+        my_listview.setAdapter(adapter);
+        my_listview.setOnClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick (AdapterView<?> parent, View V, int poistion, long id) {
+                Toast.makeText(getApplicationContext()
+
+            }
+        });
 
 
         mountainArrayList.add(new Mountain("Matterhorn","Alps",4478));
