@@ -13,25 +13,32 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+
 
 public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Mountain> mountainArrayList=new ArrayList(); //Skapar en ny lista med namnet mountainArrayList. Värden av typen mountain som är skapad.
 
+    public ArrayAdapter<Mountain>adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ArrayAdapter<Mountain> adapter=new ArrayAdapter<Mountain>(this, R.layout.list_item_textview,R.id.text_T,mountainArrayList); //Adapter pekar på layouten och sedan på id:et och tar in värdet av mountainArrayList. Adapter kopplar samman alla.
+        adapter=new ArrayAdapter<Mountain>(this, R.layout.list_item_textview,R.id.text_T,mountainArrayList); //Adapter pekar på layouten och sedan på id:et och tar in värdet av mountainArrayList. Adapter kopplar samman alla.
         ListView my_listview=(ListView) findViewById(R.id.list_V);  //Hämtar list view
         my_listview.setAdapter(adapter);
         my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
@@ -97,7 +104,26 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String json) {
-            Log.d("TAG", json);
+            try {
+                mountainArrayList.clear();
+                JSONArray jsonArray = new JSONArray(json);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                    String name = jsonObject.getString("name");
+                    String location = jsonObject.getString("location");
+                    int height = jsonObject.getInt("size");
+
+                    Mountain mountain = new Mountain(name, location, height);
+                }
+                adapter.notifyDataSetChanged();
+
+                }
+
+                catch (JSONException e) {
+                    Log.d("JSON", "Could not parse: " + json + "\n due to expectation:" + e);
+                }
+            }
         }
     }
 }
