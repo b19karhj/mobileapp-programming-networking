@@ -43,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         my_listview.setAdapter(adapter);
         my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
-            public void onItemClick (AdapterView<?> parent, View V, int poistion, long id) {
-                Toast.makeText(getApplicationContext(), mountainArrayList.get(poistion).info(),Toast.LENGTH_SHORT).show(); //Skriver ut värdet i mountainArraylist.
+            public void onItemClick (AdapterView<?> parent, View V, int position, long id) {
+                Toast.makeText(getApplicationContext(), mountainArrayList.get(position).info(),Toast.LENGTH_SHORT).show(); //Skriver ut värdet i mountainArraylist.
 
             }
         });
