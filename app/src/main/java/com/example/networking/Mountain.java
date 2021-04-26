@@ -12,5 +12,12 @@ public class Mountain {
         location=l;
         height=-1;
 
+    }
+
+    public String info(){
+        String tmp=new String();
+        tmp+=name+" is located in mountain range "+location+" and reaches "+height+"m above sea level.";
+        return tmp;
+    }
 
 }
