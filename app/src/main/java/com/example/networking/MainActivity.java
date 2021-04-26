@@ -56,9 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 new JsonTask().execute("https://wwwlab.iit.his.se/brom/kurser/mobilprog/dbservice/admin/getdataasjson.php?type=brom");
             }
         });
-        mountainArrayList.add(new Mountain("Matterhorn","Alps",4478));
-        mountainArrayList.add(new Mountain("Mont Blanc","Alps",4808));
-        mountainArrayList.add(new Mountain("Denali","Alaska",6190));
+
 
     }
 
@@ -115,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
                     int height = jsonObject.getInt("size");
 
                     Mountain mountain = new Mountain(name, location, height);
+                    mountainArrayList.add(mountain);
                 }
                 adapter.notifyDataSetChanged();
 
@@ -126,4 +125,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-}
+

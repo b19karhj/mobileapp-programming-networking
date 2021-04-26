@@ -19,4 +19,8 @@ public class Mountain {
         return tmp;
     }
 
+    @Override
+    public String toString(){  //Tar och visar namnet istället för vad som annars står.
+        return name;
+    }
 }
