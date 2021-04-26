@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Mountain> adapter=new ArrayAdapter<Mountain>(this, R.layout.list_item_textview,R.id.text_T,mountainArrayList); //Adapter pekar på layouten och sedan på id:et och tar in värdet av mountainArrayList. Adapter kopplar samman alla.
         ListView my_listview=(ListView) findViewById(R.id.list_V);  //Hämtar list view
         my_listview.setAdapter(adapter);
-        my_listview.setOnClickListener(new AdapterView.OnItemClickListener(){
+        my_listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick (AdapterView<?> parent, View V, int poistion, long id) {
-                Toast.makeText(getApplicationContext()
+                Toast.makeText(getApplicationContext(), "Enter your text here", Toast.LENGTH_SHORT).show(); //Toast skriver ut text.
 
             }
         });
