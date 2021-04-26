@@ -15,8 +15,7 @@ public class Mountain {
     }
 
     public String info(){
-        String tmp=new String();
-        tmp+=name+" is located in mountain range "+location+" and reaches "+height+"m above sea level.";
+        String tmp=name+" is located in mountain range "+location+" and reaches "+height+"m above sea level."; //Lägger in datan från tidigare funktion till en sträng.
         return tmp;
     }
 
